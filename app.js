@@ -4,16 +4,35 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const db = require("./db/index");
-// Connection.open();
+
+const { graphqlHTTP } = require('express-graphql');
+var { buildSchema } = require('graphql');
 
 var app = express();
 
+const {commentRoot, commentQuery} = require('./schemas/comments');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// Initialize a GraphQL schema
+// var schema = buildSchema(`
+//   type Query {
+//     hello: String
+//   }
+// `);
+
+// Root resolver
+
+app.use('/graphql', graphqlHTTP({
+    schema: buildSchema(commentQuery),
+    rootValue: commentRoot,
+    graphiql: true
+}));
 
 app.use(logger('dev'));
 app.use(express.json());

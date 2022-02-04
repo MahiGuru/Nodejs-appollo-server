@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const mongoDbUrl = 'mongodb+srv://admin:admin@cluster0.wntrn.mongodb.net/sample_airbnb?retryWrites=true&w=majority';
+const mongoDbUrl = 'mongodb+srv://admin:admin@cluster0.wntrn.mongodb.net/sample_mflix?retryWrites=true&w=majority';
 let mongodb;
 
 function connect(callback){
