@@ -2,15 +2,14 @@ var express = require('express');
 var router = express.Router();
 const db = require("../db/index");
 
-
 // var root = {
 //     course: getCourse,
 //     courses: getCourses
 // };
-router.get('/', async(req, res) => {
-    console.log("inside /")
-    res.render('index', {title: "hello world"});
-})
+// router.get('/', async(req, res) => {
+//     console.log("inside /")
+//     res.render('index', {title: "hello world"});
+// })
 /* GET home page. */
 router.get('/comments', async (req, res, next) => {
     try {

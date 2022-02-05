@@ -1,8 +1,9 @@
+const { gql } = require('apollo-server');
+
 // GraphQL schema
 module.exports.commentQuery = `
     type Query {
-        comment(id: Int!): Comment
-        comments(name: String!): [Comment]
+        comments: [Comment]
     }
     type Comment {
         _id: Int
@@ -13,13 +14,16 @@ module.exports.commentQuery = `
         date: String
     }
 `;
+
 var getComment = async (args) => {
     return await db.get().collection('comments').find({}).toArray();
 }
 var getComments = async () => {
     return await db.get().collection('comments').find({}).toArray();
 }
-module.exports.commentRoot = {
-    comment:getComment,
-    comments: getComments
+module.exports.commentResolvers = {
+    Query: {
+        comment: getComment,
+        comments: getComments
+    }
 }
