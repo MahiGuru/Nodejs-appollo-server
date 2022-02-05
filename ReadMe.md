@@ -17,6 +17,7 @@ query MoviesQuery {
     released
   }
 }
+
 query MovieQuery($id: String, $title: String) {
   getMovie(_id: $id, title: $title) {
     _id,
