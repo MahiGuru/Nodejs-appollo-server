@@ -11,9 +11,9 @@ const db = require("./db/index");
 const { ApolloServer, gql } = require('apollo-server');
 const { schema } = require('./schemas/rootSchema');
 var app = express();
-const port = 3000;
+const port = 5000;
 
-const server = new ApolloServer({ schema })
+const apolloServer = new ApolloServer({ schema })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,9 +51,9 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-// module.exports = app;
-db.connect(() => {
-    server.listen({port}, () =>
-        console.log(`Gateway API running at port: ${server.graphqlPath}`)
-    );
-});
+module.exports = app; 
+// db.connect(() => {
+//     apolloServer.listen({port}, () =>
+//         console.log(`Gateway API running at port: ${server.graphqlPath}`)
+//     );
+// });
